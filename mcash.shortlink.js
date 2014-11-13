@@ -2,19 +2,22 @@
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define([], function () {
-                return (root.mCASH = factory());
+            root.mCASH = factory();
+            return root.mCASH;
         });
     } else {
         // Browser globals
         root.mCASH = factory();
     }
 }(this, function () {
+    'use strict';
 
     var MCASH_FALLBACK_DOWNLOAD_URL = "https://itunes.apple.com/no/app/mcash/id550136730?mt=8",
         MCASH_FALLBACK_DOWNLOAD_URL_ANDROID = "market://details?id=no.mcash",
         MCASH_QR_ENDPOINT = "https://api.mca.sh/shortlink/v1/qr_image/",
-        MCASH_STATIC_PREFIX = "http://api.mca.sh/sdk/v1",
+        MCASH_STATIC_PREFIX = "http://api.mca.sh/sdk/v1/",
         MCASH_BUTTON_URL = "assets/images/mCASH_logo_symbol.png",
+        MCASH_LOGO = 'assets/images/mCASH_logo.png',
         MCASH_BUTTON_CSS = "assets/css/button.css",
         MCASH_QR_CSS = "assets/css/qr.css",
         IS_INSIDE_MCASH = false,
@@ -23,22 +26,22 @@
             en: "Pay with mCASH"
         },
         MCASH_DESKTOP_IOS = "https://itunes.apple.com/no/app/mcash/id550136730?mt=8",
-        MCASH_DESKTOP_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash';
+        MCASH_DESKTOP_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash',
 
-    function mCASHShortlink_CanOpen(result) {
-        if (result["canopen"] == "mcash:") {
-            IS_INSIDE_MCASH = true;
-        }
-    }
+        mCASHShortlink_CanOpen = function (result) {
+            if (result.canopen === "mcash:") {
+                IS_INSIDE_MCASH = true;
+            }
+        },
 
-    function mCASHInit() {
-        document.location = "canopen://mCASHShortlink_CanOpen?mcash:";
-    };
+        mCASHInit = function () {
+            document.location = "canopen://mCASHShortlink_CanOpen?mcash:";
+        },
 
-    var exports = {};
+        exports = {};
 
-    exports.scan = function(shortlinkUrl) {
-    	var embedded_shortlink = "mcash://qr?code=" + shortlinkUrl;
+    exports.scan = function (shortlinkUrl) {
+        var embedded_shortlink = "mcash://qr?code=" + shortlinkUrl;
         //Open the app, if installed
 
         if (navigator.userAgent.match(/Android|Dalvik/)) {
@@ -46,32 +49,28 @@
         } else {
             location.href = embedded_shortlink;
             if (!IS_INSIDE_MCASH) {
-                setTimeout(function() {
+                setTimeout(function () {
                     location.href = MCASH_FALLBACK_DOWNLOAD_URL;
                 }, 300);
             }
         }
-    }
+    };
 
-    exports.platformHasNativeSupport = function() {
+    exports.platformHasNativeSupport = function () {
         return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
     };
 
-    exports.createmCASHButton = function(id, argstring, static_prefix) {
-        var mCASHButton,
-            mCASHDiv,
-            labelKey,
-            greeting,
+    exports.createmCASHButton = function (id, argstring) {
+        var mCASHDiv = document.getElementById("mcashShortlink"),
+            labelKey = mCASHDiv ? mCASHDiv.getAttribute("data-mcash-lang") : 'en',
+            greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP.no,
+            cssId = "shortlinkcss",
+            shortlinkUrl = 'http://mca.sh/s/' + id + '/' + (argstring || ''),
             span,
             mCASHPayImg,
+            mCASHButton,
             cssTag,
-            headTag,
-            cssId = "shortlinkcss",
-            shortlinkUrl = 'http://mca.sh/s/' + id + '/' + (argstring || '');
-
-        if (static_prefix) {
-            MCASH_STATIC_PREFIX = static_prefix;
-        }
+            headTag;
 
         //Load css for the button
         if (!document.getElementById(cssId)) {
@@ -90,23 +89,17 @@
         }
 
         mCASHButton = document.createElement("button");
-        mCASHDiv = document.getElementById("mcashShortlink");
-        if (mCASHDiv) {
-            labelKey = mCASHDiv.getAttribute("data-mcash-lang");
-
-        } else {
-            labelKey = "en";
-        }
-        greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP["no"];
         span = document.createElement("span");
+
         span.className = "label";
         span.innerHTML = greeting;
 
         mCASHButton.type = "button";
         mCASHButton.className = "paywithmcash";
-        mCASHButton.onclick = function() {
+        mCASHButton.onclick = function () {
             exports.scan(shortlinkUrl);
         };
+
         mCASHPayImg = document.createElement("img");
         mCASHPayImg.class = "paywithmcash";
         mCASHPayImg.src = MCASH_STATIC_PREFIX + MCASH_BUTTON_URL;
@@ -115,25 +108,31 @@
         return mCASHButton;
     };
 
-    exports.createQRcode = function(id, argstring) {
-        var qrCssTag,
+    exports.createQRcode = function (id, argstring) {
+        var qr = document.getElementById('mcash-qr'),
+            qrCssId = "qrcss",
+            qrImageUrl = MCASH_QR_ENDPOINT + id + '/' + (argstring || ''),
+            Android,
+            brand,
             headTag,
-            qrCssId = "qrcss";
+            iOS,
+            logo,
+            nav,
+            qrCode,
+            qrCssTag;
 
-        var qrCode = document.createElement("img");
-        argstring = argstring || '';
-        qrImageUrl = MCASH_QR_ENDPOINT + id + '/' + argstring;
+        qrCode = document.createElement("img");
         qrCode.src = qrImageUrl;
         qrCode.className = "mcash-qr-image";
 
         // Load css for the QR
         if (!document.getElementById(qrCssId)) {
-            qrCssTag = document.createElement("link");
-            qrCssTag.rel = "stylesheet";
-            qrCssTag.id = qrCssId;
-            qrCssTag.type = "text/css";
-            qrCssTag.href = MCASH_STATIC_PREFIX + MCASH_QR_CSS;
             if (document.getElementsByTagName("head")[0]) {
+                qrCssTag = document.createElement("link");
+                qrCssTag.rel = "stylesheet";
+                qrCssTag.id = qrCssId;
+                qrCssTag.type = "text/css";
+                qrCssTag.href = MCASH_STATIC_PREFIX + MCASH_QR_CSS;
                 document.getElementsByTagName("head")[0].appendChild(qrCssTag);
             } else {
                 headTag = document.createElement("head");
@@ -143,55 +142,57 @@
         }
 
         // Create the bottom navigation
-        var qr = document.getElementById('mcash-qr'),
-            nav = document.createElement('div');
-            nav.setAttribute('id', 'mcash-nav');
-            qr.appendChild(nav);
+        nav = document.createElement('div');
+        nav.setAttribute('id', 'mcash-nav');
+        qr.appendChild(nav);
 
         // Create logo and download links
-        var brand = document.getElementById('mcash-nav'),
-            logo = document.createElement('img'),
-            iOS = document.createElement('a'),
-            Android = document.createElement('a');
+        logo = document.createElement('img');
+        logo.setAttribute('src', MCASH_STATIC_PREFIX + MCASH_LOGO);
+        logo.setAttribute('class', 'mcash-logo');
 
-            logo.setAttribute('src', 'assets/images/mCASH_logo.png');
-            logo.setAttribute('class', 'mcash-logo');
+        iOS = document.createElement('a');
+        iOS.setAttribute('href', MCASH_DESKTOP_IOS);
+        iOS.setAttribute('class', 'mcash-link mcash-ios');
+        iOS.setAttribute('target', '_blank');
+        iOS.setAttribute('title', 'Download mCASH from App Store');
+        iOS.innerHTML = 'iOS';
 
-            iOS.setAttribute('href', MCASH_DESKTOP_IOS);
-            iOS.setAttribute('class', 'mcash-link mcash-ios');
-            iOS.setAttribute('target', '_blank');
-            iOS.setAttribute('title', 'Download mCASH from App Store');
-            iOS.innerHTML = 'iOS';
+        Android = document.createElement('a');
+        Android.setAttribute('href', MCASH_DESKTOP_ANDROID);
+        Android.setAttribute('class', 'mcash-link mcash-android');
+        Android.setAttribute('target', '_blank');
+        Android.setAttribute('title', 'Download mCASH from Google Play');
+        Android.innerHTML = 'Android';
 
-            Android.setAttribute('href', MCASH_DESKTOP_ANDROID);
-            Android.setAttribute('class', 'mcash-link mcash-android');
-            Android.setAttribute('target', '_blank');
-            Android.setAttribute('title', 'Download mCASH from Google Play');
-            Android.innerHTML = 'Android';
-
-            brand.appendChild(logo);
-            brand.appendChild(Android);
-            brand.appendChild(iOS);
+        brand = document.getElementById('mcash-nav');
+        brand.appendChild(logo);
+        brand.appendChild(Android);
+        brand.appendChild(iOS);
 
         return qrCode;
     };
 
-    exports.displayQRorButton = function() {
-        var i,
-            id,
+    exports.displayQRorButton = function () {
+        var mCASHDivs = document.getElementsByClassName("mcashShortlink"),
             argstring,
-            mCASHDiv,
-            mCASHDivs,
+            i,
+            id,
             mCASHButton,
+            mCASHDiv,
             qrCode,
-            static_prefix,
-            mCASHDivs = document.getElementsByClassName("mcashShortlink");
+            static_prefix;
+
 
         for (i = 0; i < mCASHDivs.length; i++) {
             mCASHDiv = mCASHDivs[i];
             id = mCASHDiv.getAttribute("data-shortlink-id");
             argstring = mCASHDiv.getAttribute("data-shortlink-argstring") || '';
             static_prefix = mCASHDiv.getAttribute("data-static-prefix") || '';
+
+            if (static_prefix) {
+                MCASH_STATIC_PREFIX = static_prefix;
+            }
 
             if (exports.platformHasNativeSupport()) {
                 mCASHButton = exports.createmCASHButton(id, argstring, static_prefix);
