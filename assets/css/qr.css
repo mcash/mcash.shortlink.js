@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'HermesFB Regular';
+  src: url('../fonts/HermesFB-Regular.eot');
+  src: url('../fonts/HermesFB-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/HermesFB-Regular.woff') format('woff'),
+       url('../fonts/HermesFB-Regular.ttf')  format('truetype'),
+       url('../fonts/HermesFB-Regular.svg#bxocimmyrq') format('svg');
+  font-style: normal;
+  font-weight: 200;
+}
+#mcash-qr {
+	display: inline-block;
+}
+.mcash-wrapper {
+	border: 1px solid #ccc;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #ebebeb;
+	padding: 10px;
+}
+#mcash-qr img.mcash-qr-image {
+	border: 1px solid #dadada;
+	max-width: 280px;
+	display: block;
+	margin-bottom: 10px;
+}
+#mcash-nav {
+	overflow: hidden;
+}
+.mcash-logo {
+	width: auto;
+	height: 24px;
+	float: left;
+}
+.mcash-link {
+	font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	font-size: 12px;
+	color: #1f99a6;
+	line-height: 20px;
+	margin-left: 10px;
+	float: right;
+}

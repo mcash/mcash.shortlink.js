@@ -19,7 +19,9 @@
         MCASH_LOCALE_MAP = {
             no: "Betal med mCASH",
             en: "Pay with mCASH"
-        };
+        },
+        MCASH_DESKTOP_IOS = "https://itunes.apple.com/no/app/mcash/id550136730?mt=8",
+        MCASH_DESKTOP_ANDROID = 'https://play.google.com/store/apps/details?id=no.mcash';
 
     function mCASHShortlink_CanOpen(result) {
         if (result["canopen"] == "mcash:") {
@@ -68,13 +70,6 @@
         argstring = argstring || '';
         shortlinkUrl = 'http://mca.sh/s/' + id + '/' + argstring;
 
-        var wrapperClass = document.getElementById('mcash-qr').classList;
-        wrapperClass.remove('mcash-wrapper');
-
-        // Remove the mCASH wrapper
-        var mcashWrapper = document.getElementById("mcash-nav");
-        mcashWrapper.remove();
-
         //Load css if not already loaded
         if (!document.getElementById(cssId)) {
             cssTag = document.createElement("link");
@@ -119,11 +114,64 @@
     };
 
     exports.createQRcode = function(id, argstring) {
+        var qrCssTag,
+            headTag,
+            qrCssId = "qrcss";
+
         var qrCode = document.createElement("img");
         argstring = argstring || '';
         qrImageUrl = MCASH_QR_ENDPOINT + id + '/' + argstring;
         qrCode.src = qrImageUrl;
         qrCode.className = "mcash-qr-image";
+
+        //Load css if not already loaded
+        if (!document.getElementById(qrCssId)) {
+            qrCssTag = document.createElement("link");
+            qrCssTag.rel = "stylesheet";
+            qrCssTag.id = qrCssId;
+            qrCssTag.type = "text/css";
+            //qrCssTag.href = MCASH_STATIC_PREFIX + "/shortlink.min.css";
+            qrCssTag.href = "assets/css/qr.css";
+            if (document.getElementsByTagName("head")[0]) {
+                document.getElementsByTagName("head")[0].appendChild(qrCssTag);
+            } else {
+                headTag = document.createElement("head");
+                headTag.appendChild(qrCssTag);
+                document.body.appendChild(headTag);
+            }
+        }
+
+        // Create the bottom navigation
+        var qr = document.getElementById('mcash-qr'), 
+            nav = document.createElement('div');
+            nav.setAttribute('id', 'mcash-nav');
+            qr.appendChild(nav);
+
+        // Create logo and download links
+        var brand = document.getElementById('mcash-nav'), 
+            logo = document.createElement('img'), 
+            iOS = document.createElement('a'), 
+            Android = document.createElement('a');
+
+            logo.setAttribute('src', 'assets/images/mCASH_logo.png');
+            logo.setAttribute('class', 'mcash-logo');
+
+            iOS.setAttribute('id', 'iOSbadge');
+            iOS.setAttribute('href', MCASH_DESKTOP_IOS);
+            iOS.setAttribute('class', 'mcash-link');
+            iOS.setAttribute('target', '_blank');
+            iOS.innerHTML = 'iOS';
+
+            Android.setAttribute('id', 'AndroidBadge');
+            Android.setAttribute('href', MCASH_DESKTOP_ANDROID);
+            Android.setAttribute('class', 'mcash-link');
+            Android.setAttribute('target', '_blank');
+            Android.innerHTML = 'Android';
+
+            brand.appendChild(logo);
+            brand.appendChild(Android);
+            brand.appendChild(iOS);
+
         return qrCode;
     };
 
