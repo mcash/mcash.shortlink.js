@@ -75,7 +75,7 @@
             MCASH_STATIC_PREFIX = static_prefix;
         }
 
-        //Load css if not already loaded
+        // Load css for the button
         if (!document.getElementById(cssId)) {
             cssTag = document.createElement("link");
             cssTag.rel = "stylesheet";
@@ -128,7 +128,7 @@
         qrCode.src = qrImageUrl;
         qrCode.className = "mcash-qr-image";
 
-        //Load css if not already loaded
+        // Load css for the QR
         if (!document.getElementById(qrCssId)) {
             qrCssTag = document.createElement("link");
             qrCssTag.rel = "stylesheet";
@@ -159,16 +159,16 @@
             logo.setAttribute('src', 'assets/images/mCASH_logo.png');
             logo.setAttribute('class', 'mcash-logo');
 
-            iOS.setAttribute('id', 'iOSbadge');
             iOS.setAttribute('href', MCASH_DESKTOP_IOS);
-            iOS.setAttribute('class', 'mcash-link');
+            iOS.setAttribute('class', 'mcash-link mcash-ios');
             iOS.setAttribute('target', '_blank');
+            iOS.setAttribute('title', 'Download mCASH from App Store');
             iOS.innerHTML = 'iOS';
 
-            Android.setAttribute('id', 'AndroidBadge');
             Android.setAttribute('href', MCASH_DESKTOP_ANDROID);
-            Android.setAttribute('class', 'mcash-link');
+            Android.setAttribute('class', 'mcash-link mcash-android');
             Android.setAttribute('target', '_blank');
+            Android.setAttribute('title', 'Download mCASH from Google Play');
             Android.innerHTML = 'Android';
 
             brand.appendChild(logo);
