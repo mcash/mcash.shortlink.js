@@ -9,8 +9,8 @@
   font-weight: 200;
 }
 
-button.paywithmcash,
-button.paywithmcash:visited {
+.paywithmcash,
+.paywithmcash:visited {
 	border: 1px solid #ccc;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -29,11 +29,11 @@ button.paywithmcash:visited {
 	outline: none;
 	cursor: pointer;
 }
-button.paywithmcash:hover {
+.paywithmcash:hover {
 	border: 1px solid #ddd;
 	background: #f2f2f2;
 }
-button.paywithmcash:active {
+.paywithmcash:active {
 	-webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
 	-moz-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
 	box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
@@ -41,13 +41,13 @@ button.paywithmcash:active {
 	top: 1px;
 	color: #505050;
 }
-button.paywithmcash img {
+.paywithmcash img {
 	width: 30px !important;
 	height: 30px !important;
 	margin: 6px !important;
 	float: left;
 }
-button.paywithmcash span.label {
+.paywithmcash span.label {
 	border-left: 1px solid #ccc;
 	width: auto;
 	max-width: 100%;
@@ -56,6 +56,6 @@ button.paywithmcash span.label {
 	padding: 0 20px;
 	float: left;
 }
-button.paywithmcash:hover span.label {
+.paywithmcash:hover span.label {
 	border-color: #ddd;
 }
