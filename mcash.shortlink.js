@@ -34,8 +34,7 @@
     var exports = {};
 
     exports.scan = function(shortlinkUrl) {
-        var embedded_shortlink = "mcash://qr?code=" + shortlinkUrl;
-        // embedded_shortlink = "next:{\"type\": \"screen\", \"id\": \"identification\"}";
+    	var embedded_shortlink = "mcash://qr?code=" + shortlinkUrl;
         //Open the app, if installed
 
         if (navigator.userAgent.match(/Android|Dalvik/)) {
@@ -82,7 +81,8 @@
             cssTag.rel = "stylesheet";
             cssTag.id = cssId;
             cssTag.type = "text/css";
-            cssTag.href = MCASH_STATIC_PREFIX + "/shortlink.min.css";
+            //cssTag.href = MCASH_STATIC_PREFIX + "/shortlink.min.css";
+            cssTag.href = "assets/css/button.css";
             if (document.getElementsByTagName("head")[0]) {
                 document.getElementsByTagName("head")[0].appendChild(cssTag);
             } else {
