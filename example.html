@@ -4,13 +4,58 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>mcash.shortlink.js</title>
+
+<style>
+#mcash-qr {
+	display: inline-block;
+}
+.mcash-wrapper {
+	border: 1px solid #ccc;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #ebebeb;
+	padding: 10px;
+}
+#mcash-qr img.mcash-qr-image {
+	border: 1px solid #dadada;
+	max-width: 280px;
+	display: block;
+	margin-bottom: 10px;
+}
+#mcash-nav {
+	overflow: hidden;
+}
+.mcash-logo {
+	max-width: 62px;
+	float: left;
+}
+.mcash-link {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #1f99a6;
+	line-height: 20px;
+	margin-left: 10px;
+	float: right;
+}
+</style>
+
 </head>
+
 <body>
-<div class="mcashShortlink" data-shortlink-id="foo" data-shortlink-argstring="bar" >
+
+<div id="mcash-qr" class="mcash-wrapper">
+	<div class="mcashShortlink" data-shortlink-id="foo" data-shortlink-argstring="bar"></div>
+	<div id="mcash-nav">
+		<a href="https://mca.sh/"><img src="assets/images/mCASH_logo.png" class="mcash-logo" alt="mCASH" /></a>
+		<a class="mcash-link" href="http://help.mca.sh/" target="_blank">Help</a>
+		<a class="mcash-link" href="http://mca.sh/app/" target="_blank">Download mCASH</a>
+	</div>
 </div>
+
 <script src="mcash.shortlink.js"></script>
-<script type="text/javascript">
-mCASH.displayQRorButton();
-</script>
+
+<script>mCASH.displayQRorButton();</script>
+
 </body>
 </html>

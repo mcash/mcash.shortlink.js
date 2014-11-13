@@ -69,6 +69,13 @@
         argstring = argstring || '';
         shortlinkUrl = 'http://mca.sh/s/' + id + '/' + argstring;
 
+        var wrapperClass = document.getElementById('mcash-qr').classList;
+        wrapperClass.remove('mcash-wrapper');
+
+        // Remove the mCASH wrapper
+        var mcashWrapper = document.getElementById("mcash-nav");
+        mcashWrapper.remove();
+
         //Load css if not already loaded
         if (!document.getElementById(cssId)) {
             cssTag = document.createElement("link");
