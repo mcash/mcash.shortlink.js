@@ -49,8 +49,8 @@
 	float: right;
 }
 .mcash-ios {
-	background-image: url(../images/ios.png);
+	background-image: url('../images/ios.png');
 }
 .mcash-android {
-	background-image: url(../images/android.png);
+	background-image: url('../images/android.png');
 }
