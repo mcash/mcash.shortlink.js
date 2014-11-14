@@ -88,21 +88,18 @@
             }
         }
 
-        mCASHButton = document.createElement("button");
         span = document.createElement("span");
-
         span.className = "label";
         span.innerHTML = greeting;
-
-        mCASHButton.type = "button";
-        mCASHButton.className = "paywithmcash";
-        mCASHButton.onclick = function () {
-            exports.scan(shortlinkUrl);
-        };
 
         mCASHPayImg = document.createElement("img");
         mCASHPayImg.class = "paywithmcash";
         mCASHPayImg.src = MCASH_STATIC_PREFIX + MCASH_BUTTON_URL;
+
+        mCASHButton = document.createElement("button");
+        mCASHButton.type = "button";
+        mCASHButton.className = "paywithmcash";
+        mCASHButton.onclick = function () { exports.scan(shortlinkUrl); };
         mCASHButton.appendChild(mCASHPayImg);
         mCASHButton.appendChild(span);
         return mCASHButton;

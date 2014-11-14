@@ -11,51 +11,52 @@
 
 .paywithmcash,
 .paywithmcash:visited {
-	border: 1px solid #ccc;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	background-color: #ebebeb;
-	/*width: 300px;*/
-	height: 44px;
-	font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-size: 16px;
-	text-align: center;
-	color: #1f99a6;
-	line-height: 1;
-	margin: 0;
-	padding: 0;
-	-webkit-appearance: none;
-	outline: none;
-	cursor: pointer;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #ebebeb;
+    /*width: 300px;*/
+    height: 44px;
+    font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #1f99a6;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
 }
 .paywithmcash:hover {
-	border: 1px solid #ddd;
-	background: #f2f2f2;
+    border: 1px solid #ddd;
+    background: #f2f2f2;
 }
 .paywithmcash:active {
-	-webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
-	-moz-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
-	box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
-	position: relative;
-	top: 1px;
-	color: #505050;
+    -webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    -moz-box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    box-shadow: inset 0 4px 4px rgba(0,0,0,.05);
+    position: relative;
+    top: 1px;
+    color: #505050;
 }
 .paywithmcash img {
-	width: 30px !important;
-	height: 30px !important;
-	margin: 6px !important;
-	float: left;
+    width: 30px !important;
+    height: 30px !important;
+    margin: 6px !important;
+    float: left;
 }
 .paywithmcash span.label {
-	border-left: 1px solid #ccc;
-	width: auto;
-	max-width: 100%;
-	line-height: 42px;
-	text-align: center;
-	padding: 0 20px;
-	float: left;
+    border-left: 1px solid #ccc;
+    color: #1f99a6;
+    width: auto;
+    max-width: 100%;
+    line-height: 42px;
+    text-align: center;
+    padding: 0 20px;
+    float: left;
 }
 .paywithmcash:hover span.label {
-	border-color: #ddd;
+    border-color: #ddd;
 }
