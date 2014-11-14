@@ -41,7 +41,7 @@
     font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-size: 12px;
-    color: #1f99a6;
+    color: #fff;
     line-height: 24px;
     text-indent: -9999em;
     margin-left: 6px;
@@ -50,6 +50,27 @@
 .mcash-ios {
     background-image: url('../images/ios.png');
 }
+.mcash-ios-w {
+    background-image: url('../images/ios_white.png');
+}
 .mcash-android {
     background-image: url('../images/android.png');
+}
+.mcash-android-w {
+    background-image: url('../images/android_white.png');
+}
+.mcash-green {
+    display: inline-block;
+    border: 1px solid #4ea190;
+    background-color: #57b3a0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.mcash-green .mcash-qr-image {
+    border: 1px solid #4ea190;
+    max-width: 280px;
+    display: block;
+    margin-bottom: 10px;
 }

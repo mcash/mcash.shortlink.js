@@ -22,6 +22,7 @@
         MCASH_BUTTON_CSS = 'assets/css/button.css',
         MCASH_BUTTON_ALTERNATE = '',
         MCASH_QR_CSS = 'assets/css/qr.css',
+        MCASH_QR_ALTERNATE = '',
         IS_INSIDE_MCASH = false,
         MCASH_LOCALE_MAP = {
             no: 'Betal med',
@@ -97,12 +98,11 @@
         mCASHPayImg = document.createElement('img');
         mCASHPayImg.class = 'paywithmcash';
 
-        if ( MCASH_BUTTON_ALTERNATE !== 'mcash-green') {
+        if ( MCASH_BUTTON_ALTERNATE !== 'mcash-green' ) {
             mCASHPayImg.src = MCASH_STATIC_PREFIX + MCASH_LOGO;
         } else {
             mCASHPayImg.src = MCASH_STATIC_PREFIX + MCASH_LOGO_ALTERNATE;
         }
-
 
         mCASHButton = document.createElement('button');
         mCASHButton.type = 'button';
@@ -125,9 +125,11 @@
             iOS,
             logo,
             nav,
+            qrWrap,
             qrCode,
             qrCssTag;
 
+        qr.className = 'mcash-wrapper ' + MCASH_QR_ALTERNATE;
         qrCode = document.createElement('img');
         qrCode.src = qrImageUrl;
         qrCode.className = 'mcash-qr-image';
@@ -177,6 +179,14 @@
         brand.appendChild(Android);
         brand.appendChild(iOS);
 
+        if ( MCASH_QR_ALTERNATE !== 'mcash-green' ) {
+            logo.src = MCASH_STATIC_PREFIX + MCASH_LOGO;
+        } else {
+            logo.src = MCASH_STATIC_PREFIX + MCASH_LOGO_ALTERNATE;
+            iOS.setAttribute('class', 'mcash-link mcash-ios-w');
+            Android.setAttribute('class', 'mcash-link mcash-android-w');
+        }
+
         return qrCode;
     };
 
@@ -189,7 +199,8 @@
             mCASHDiv,
             qrCode,
             static_prefix,
-            btn_alternate;
+            btn_alternate,
+            qr_alternate;
 
 
         for (i = 0; i < mCASHDivs.length; i++) {
@@ -198,6 +209,7 @@
             argstring = mCASHDiv.getAttribute('data-shortlink-argstring') || '';
             static_prefix = mCASHDiv.getAttribute('data-static-prefix') || '';
             btn_alternate = mCASHDiv.getAttribute('data-btn-alternate') || '';
+            qr_alternate = mCASHDiv.getAttribute('data-qr-alternate') || '';
 
             if (static_prefix) {
                 MCASH_STATIC_PREFIX = static_prefix;
@@ -205,6 +217,10 @@
 
             if (btn_alternate) {
                 MCASH_BUTTON_ALTERNATE = btn_alternate;
+            }
+
+            if (qr_alternate) {
+                MCASH_QR_ALTERNATE = qr_alternate;
             }
 
             if (exports.platformHasNativeSupport()) {
