@@ -15,7 +15,6 @@
     var MCASH_FALLBACK_DOWNLOAD_URL = 'https://itunes.apple.com/no/app/mcash/id550136730?mt=8',
         MCASH_QR_ENDPOINT = 'https://api.mca.sh/shortlink/v1/qr_image/',
         MCASH_SHORTLINK_ENDPOINT = 'http://mca.sh/s/',
-        MCASH_STATIC_PREFIX = '/', //'http://api.mca.sh/sdk/v1/',
         MCASH_LOGO = 'assets/images/mCASH_logo.png',
         MCASH_LOGO_ALTERNATE = 'assets/images/mCASH_logo_white.png',
         MCASH_BUTTON_CSS = 'assets/css/button.css',
@@ -30,6 +29,23 @@
 
         platformHasNativeSupport = function () {
             return navigator.userAgent.match(/iPhone|iPad|iPod|Android|Dalvik/);
+        },
+
+        getPrefix = function () {
+            var scripts = document.getElementsByTagName('script'),
+                parser,
+                match,
+                i;
+
+            for (i = 0; i < scripts.length; i++) {
+                match = scripts[i].src && scripts[i].src.match(/^(.*)mcash.shortlink.js$/);
+                if (match && match[1]) {
+                    parser = document.createElement('a');
+                    parser.href = match[1];
+                    return parser.pathname;
+                }
+            }
+            return '/';
         },
 
         scan = function (shortlinkUrl) {
@@ -166,7 +182,7 @@
             mCASHDiv,
             alternate,
             id,
-            static_prefix,
+            static_prefix = getPrefix(),
             qrCode,
             i;
 
@@ -175,7 +191,6 @@
             id = mCASHDiv.getAttribute('data-shortlink-id');
             if (id && id.trim()) {
                 id = id.trim() + '/' + (mCASHDiv.getAttribute('data-shortlink-argstring') || '');
-                static_prefix = mCASHDiv.getAttribute('data-static-prefix') || MCASH_STATIC_PREFIX;
                 alternate = mCASHDiv.getAttribute('data-alternate') === 'true';
 
                 if (native) {
