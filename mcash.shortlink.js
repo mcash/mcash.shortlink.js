@@ -32,13 +32,12 @@
         },
 
         getPrefix = function () {
-            var scripts = document.getElementsByTagName('script'),
-                parser,
+            var parser,
                 match,
                 i;
 
-            for (i = 0; i < scripts.length; i++) {
-                match = scripts[i].src && scripts[i].src.match(/^(.*)mcash.shortlink.js$/);
+            for (i = 0; i < document.scripts.length; i++) {
+                match = document.scripts[i].src && document.scripts[i].src.match(/^(.*)mcash\.shortlink\.js$/);
                 if (match && match[1]) {
                     parser = document.createElement('a');
                     parser.href = match[1];
@@ -67,7 +66,7 @@
         loadCSS = function (cssId, href) {
             if (!document.getElementById(cssId)) {
                 var headTag = document.getElementsByTagName('head'),
-                    cssTag = cssTag = document.createElement('link');
+                    cssTag = document.createElement('link');
 
                 if (!headTag) {
                     headTag = [document.createElement('head')];
@@ -121,7 +120,6 @@
                 logo,
                 nav,
                 qrCode,
-                qrCssTag,
                 wrapper;
 
             loadCSS('qrcss', prefix + MCASH_QR_CSS);
@@ -178,12 +176,10 @@
     exports.displayQRorButton = function () {
         var mCASHDivs = document.getElementsByClassName('mcash-shortlink'),
             native = platformHasNativeSupport(),
-            mCASHButton,
             mCASHDiv,
             alternate,
             id,
             static_prefix = getPrefix(),
-            qrCode,
             i;
 
         for (i = 0; i < mCASHDivs.length; i++) {
