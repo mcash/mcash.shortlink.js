@@ -1,0 +1,25 @@
+{
+  "name": "mcash.shortlink.js",
+  "version": "0.4.0",
+  "description": "mCASH shortlink JS library",
+  "homepage": "https://github.com/mcash/mcash.shortlink.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mcash/mcash.shortlink.js.git"
+  },
+  "scripts": {
+    "build": "./node_modules/grunt-cli/bin/grunt",
+    "example": "python -m SimpleHTTPServer",
+    "test": "./node_modules/grunt-cli/bin/grunt test"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-jasmine": "^0.8.2",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-uglify": "~0.4.0"
+  },
+  "dependencies": {}
+}

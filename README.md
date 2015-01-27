@@ -5,13 +5,17 @@ A standalone JavaScript library that helps you display QR-codes or "Pay with mCA
 On a phone a button will be shown, that when pressed opens the mCASH app and makes a call to mCASH.
 If the phone does not have mCASH installed the user will be redirected to GooglePlay or AppStore.
 
-This library is distributed with [bower](http://bower.io). In order to install the full package, including JavaScript, CSS, images and fonts use bower:
-
+Building the library
+--------------------
+You need `npm` from [node.js](http://nodejs.org/) to build this library.
 ```
-bower install mcash.shortlink.js
+npm install
+npm run build
 ```
 
-To serve the code either deploy mcash.shortlink.js or the minified mcash.shortlink.min.js and the assets folder as is.
+Deploying the library
+---------------------
+After building the code deploy the content of `dest` folder. Pick either mcash.shortlink.js or the minified mcash.shortlink.min.js and the assets folder as is.
 
 
 Example and customization
@@ -23,16 +27,11 @@ code to button (or fake your user agent and view on your laptop). Shows examples
 
 Try the example
 -------------
-If you have cloned the repository, you can see the example by
-```
-python -m SimpleHTTPServer
-open http://localhost:8000/example.html
-```
+Start a local example server `npm run example` and open [http://localhost:8000/example.html](http://localhost:8000/example.html) in your browser.
 
 Test suit
 -------
+
 ```
-bower install
-python -m SimpleHTTPServer
-open http://localhost:8000/tests/specRunner.html
+npm test
 ```

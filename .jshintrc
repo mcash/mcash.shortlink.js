@@ -1,0 +1,28 @@
+{
+    "boss": true,
+    "browser": true,
+    "curly": true,
+    "eqeqeq": true,
+    "eqnull": true,
+    "immed": true,
+    "jquery": true,
+    "latedef": true,
+    "newcap": true,
+    "noarg": true,
+    "node": true,
+    "sub": true,
+    "undef": true,
+    "globals": {
+        "it": false,
+        "xit": false,
+        "describe": false,
+        "define": false,
+        "mCASH": false,
+        "xdescribe": false,
+        "beforeEach": false,
+        "afterEach": false,
+        "expect": false,
+        "QRCode": false,
+        "spyOn": false
+    }
+}

@@ -16,13 +16,24 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
     background-color: #ebebeb;
+    max-width: 178px;
+    margin-bottom: 15px;
     padding: 10px;
 }
+
 .mcash-wrapper .mcash-qr-image {
     border: 1px solid #dadada;
-    max-width: 280px;
-    display: block;
+    background-color: #fff;
     margin-bottom: 10px;
+    width: auto;
+    padding: 20px;
+}
+
+.mcash-wrapper .mcash-qr-image img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 .mcash-nav {
     overflow: hidden;
@@ -70,7 +81,5 @@
 }
 .mcash-green .mcash-qr-image {
     border: 1px solid #4ea190;
-    max-width: 280px;
-    display: block;
     margin-bottom: 10px;
 }

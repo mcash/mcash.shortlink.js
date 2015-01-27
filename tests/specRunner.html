@@ -2,7 +2,7 @@
 <head>
   <title>Jasmine Spec Runner</title>
 
-  <link rel="stylesheet" type="text/css" href="../bower_components/jasmine/lib/jasmine-core/jasmine.css"/>
+  <link rel="stylesheet" type="text/css" href="/bower_components/jasmine/lib/jasmine-core/jasmine.css"/>
 
   <script src="/bower_components/jasmine/lib/jasmine-core/jasmine.js"></script>
   <script src="/bower_components/jasmine/lib/jasmine-core/jasmine-html.js"></script>
@@ -11,13 +11,14 @@
   <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 
   <script src="/mcash.shortlink.js"></script>
-  <script src="specs/mcash.shortlink_spec.js"></script>
+  <script src="/tests/spec/mcash.shortlink_spec.js"></script>
 </head>
 <body>
     <div id="sandbox">
         <div id="a" class="mcash-shortlink test" data-shortlink-id="moo"></div>
         <div id="b" class="mcash-shortlink test" data-shortlink-id="moo" data-shortlink-argstring="far"></div>
-
+        <div id="c" class="mcash-shortlink test" data-shortlink-id="foo" data-shortlink-prefix="q"></div>
+        <div id="d" class="mcash-shortlink test" data-shortlink-id="boo" data-shortlink-prefix="../../"></div>
     </div>
 </body>
 </html>

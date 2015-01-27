@@ -1,4 +1,7 @@
+.DS_Store
+.grunt/
+.idea/
+_SpecRunner.html
 bower_components/
 node_modules/
-.idea/
-.DS_Store
+npm-debug.log
