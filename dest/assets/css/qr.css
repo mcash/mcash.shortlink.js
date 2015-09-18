@@ -1,22 +1,10 @@
-@font-face {
-  font-family: 'HermesFB Regular';
-  src: url('../fonts/HermesFB-Regular.eot');
-  src: url('../fonts/HermesFB-Regular.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/HermesFB-Regular.woff') format('woff'),
-       url('../fonts/HermesFB-Regular.ttf')  format('truetype'),
-       url('../fonts/HermesFB-Regular.svg#bxocimmyrq') format('svg');
-  font-style: normal;
-  font-weight: 200;
-}
-
 .mcash-wrapper {
     display: inline-block;
-    border: 1px solid #ccc;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    background-color: #ebebeb;
-    max-width: 178px;
+    background-color: #28ACFF;
+    max-width: 400px;
     margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
@@ -24,11 +12,10 @@
 }
 
 .mcash-wrapper .mcash-qr-image {
-    border: 1px solid #dadada;
     background-color: #fff;
-    margin-bottom: 10px;
     width: auto;
-    padding: 12px;
+    margin-bottom: 10px;
+    padding: 10px;
 }
 
 .mcash-wrapper .mcash-qr-image img {
@@ -51,7 +38,7 @@
     background-position: top left;
     width: 24px;
     height: 24px;
-    font-family: 'HermesFB Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-weight: normal;
     font-size: 12px;
     color: #fff;
@@ -61,27 +48,25 @@
     float: right;
 }
 .mcash-ios {
-    background-image: url('../images/ios.png');
-}
-.mcash-ios-w {
     background-image: url('../images/ios_white.png');
 }
-.mcash-android {
-    background-image: url('../images/android.png');
+.mcash-ios-green {
+    background-image: url('../images/ios_green.png');
 }
-.mcash-android-w {
+.mcash-android {
     background-image: url('../images/android_white.png');
+}
+.mcash-android-green {
+    background-image: url('../images/android_green.png');
 }
 .mcash-green {
     display: inline-block;
-    border: 1px solid #4ea190;
-    background-color: #57b3a0;
+    background-color: #010C26;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     padding: 10px;
 }
 .mcash-green .mcash-qr-image {
-    border: 1px solid #4ea190;
     margin-bottom: 10px;
 }

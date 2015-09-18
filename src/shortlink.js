@@ -27,8 +27,8 @@
     var MCASH_SHORTLINK_ENDPOINT = 'http://mca.sh/',
         MCASH_SHORTLINK_DEFAULT_PREFIX = 's',
         MCASH_SHORTLINK_RE = /^[a-z]$/,
-        MCASH_LOGO = 'assets/images/mCASH_logo.png',
-        MCASH_LOGO_ALTERNATE = 'assets/images/mCASH_logo_white.png',
+        MCASH_LOGO = 'assets/images/mCASH_logo_white.png',
+        MCASH_LOGO_ALTERNATE = 'assets/images/mCASH_logo_green.png',
         MCASH_BUTTON_CSS = 'assets/css/button.css',
         MCASH_QR_CSS = 'assets/css/qr.css',
         MCASH_LOCALE_MAP = {
@@ -145,7 +145,7 @@
         createmCASHButton = function (mCASHDiv, prefix, alternate, shortlink_url) {
 	    var userLanguage = window.navigator.languages ? window.navigator.languages[0] : (window.navigator.language || window.navigator.userLanguage),
                 language = userLanguage && userLanguage.split('-')[0],
-                labelKey = mCASHDiv.getAttribute('data-mcash-lang'),
+                labelKey = mCASHDiv.getAttribute('data-shortlink-lang'),
                 greeting = MCASH_LOCALE_MAP[labelKey] || MCASH_LOCALE_MAP[language] || MCASH_LOCALE_MAP.en,
                 span,
                 mCASHPayImg,
@@ -245,8 +245,8 @@
                 logo.src = prefix + MCASH_LOGO;
             } else {
                 logo.src = prefix + MCASH_LOGO_ALTERNATE;
-                iOS.setAttribute('class', 'mcash-link mcash-ios-w');
-                Android.setAttribute('class', 'mcash-link mcash-android-w');
+                iOS.setAttribute('class', 'mcash-link mcash-ios-green');
+                Android.setAttribute('class', 'mcash-link mcash-android-green');
             }
 
             wrapper.appendChild(qrCode);
@@ -274,7 +274,7 @@
                     shortlink_prefix = MCASH_SHORTLINK_DEFAULT_PREFIX;
                 }
                 id = id.trim() + '/' + (mCASHDiv.getAttribute('data-shortlink-argstring') || '');
-                alternate = mCASHDiv.getAttribute('data-alternate') === 'true';
+                alternate = mCASHDiv.getAttribute('data-shortlink-alternate') === 'true';
                 shortlink_url = MCASH_SHORTLINK_ENDPOINT + shortlink_prefix + '/' + id;
 
                 if (native) {
